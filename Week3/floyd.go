@@ -39,7 +39,7 @@ func floydWarshall(g [][]graph) [][]float64 {
 
 func main() {
 	gra := [][]graph{
-		1: {{4, 1}, {5, 5}, {6, 2}},
+		1: {{4, 1}, {5, 5}, {6, 2}}, // Node 1 to every node's length and so on
 		2: {{1, 9}, {3, 3}, {4, 2}},
 		3: {{4, 4}},
 		4: {{3, 2}, {5, 3}},
