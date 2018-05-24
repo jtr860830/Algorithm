@@ -3,23 +3,33 @@ package main
 import "fmt"
 
 var (
-	Up   byte = 1
-	Left byte = 2
-	NW   byte = 3
-	None byte = 4
+	Up   rune = 1
+	Left rune = 2
+	NW   rune = 3
+	None rune = 4
 )
 
 func main() {
-	fmt.Println(Align("學問是資管系", "資管系有帥哥", 0, -3, -2))
-	fmt.Println(Align("學問是資管系", "資管界美女", 0, -3, -2))
-	fmt.Println(Align("學問是資管系", "淡江大學有很好的資管系", 0, -3, -2))
+	str := "學問是資管系"
+	str1 := "資管系有帥哥"
+	str2 := "資管界美女"
+	str3 := "淡江大學有很好的資管系"
+
+	r := []rune(str)
+	r1 := []rune(str1)
+	r2 := []rune(str2)
+	r3 := []rune(str3)
+
+	fmt.Println(Align(r, r1, 0, -3, -2))
+	fmt.Println(Align(r, r2, 0, -3, -2))
+	fmt.Println(Align(r, r3, 0, -3, -2))
 }
 
 func idx(i, j, bLen int) int {
 	return (i * bLen) + j
 }
 
-func Align(a, b string, match, mismatch, gap int) (alignA, alignB string, score int) {
+func Align(a, b []rune, match, mismatch, gap int) (alignA, alignB string, score int) {
 
 	aLen := len(a) + 1
 	bLen := len(b) + 1
@@ -29,11 +39,11 @@ func Align(a, b string, match, mismatch, gap int) (alignA, alignB string, score 
 		maxLen = bLen
 	}
 
-	aBytes := make([]byte, 0, maxLen)
-	bBytes := make([]byte, 0, maxLen)
+	aBytes := make([]rune, 0, maxLen)
+	bBytes := make([]rune, 0, maxLen)
 
 	f := make([]int, aLen*bLen)
-	pointer := make([]byte, aLen*bLen)
+	pointer := make([]rune, aLen*bLen)
 
 	for i := 1; i < aLen; i++ {
 		f[idx(i, 0, bLen)] = gap * i
@@ -104,7 +114,7 @@ func Align(a, b string, match, mismatch, gap int) (alignA, alignB string, score 
 	return string(aBytes), string(bBytes), score
 }
 
-func reverse(a []byte) {
+func reverse(a []rune) {
 	for i := 0; i < len(a)/2; i++ {
 		j := len(a) - 1 - i
 		a[i], a[j] = a[j], a[i]
