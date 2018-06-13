@@ -22,6 +22,7 @@ func main() {
 			cnt++
 		}
 	}
+	// Conunt the random point that is in circles
 	fmt.Printf("N = 512, result = %v\n", float64(cnt)/float64(N1)*8)
 
 	cnt = 0
@@ -37,6 +38,7 @@ func main() {
 	fmt.Printf("N = 2048, result = %v\n", float64(cnt)/float64(N2)*8)
 }
 
+// Check the point is in two circles
 func compare(x, y float64) bool {
 	return (x*x+y*y <= 2*2) && ((x-2)*(x-2)+y*y <= 2*2)
 }
